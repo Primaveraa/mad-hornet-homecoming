@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=1]
+
+[ext_resource path="res://scripts/seicento.gd" type="Script" id=1]
+[ext_resource path="res://assets/sejczento male plomienie.tex" type="Texture" id=2]
+[ext_resource path="res://assets/sejczento duze plomienie.tex" type="Texture" id=3]
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -126.148, -239.888, 329.852, -239.888, 383.852, -129.888, 397.852, 98.1125, -524.148, 102.112, -306.148, -111.888 )
+
+[sub_resource type="ConvexPolygonShape2D" id=3]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -484.148, -59.8875, -306.148, -111.888, -524.148, 102.112, -530.148, -21.8875 )
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="seicento" type="StaticBody2D"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+shapes/1/shape = SubResource( 3 )
+shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/1/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+script/script = ExtResource( 1 )
+
+[node name="animation" type="AnimatedSprite" parent="."]
+
+frames = SubResource( 1 )
+animation = "default"
+playing = true
+
+[node name="collision" type="CollisionPolygon2D" parent="."]
+
+build_mode = 0
+polygon = Vector2Array( -126.148, -239.888, 329.852, -239.888, 383.852, -129.888, 397.852, 98.1125, -524.148, 102.112, -530.148, -21.8875, -484.148, -59.8875, -306.148, -111.888 )
+shape_range = Vector2( 0, 1 )
+trigger = false
+
+
